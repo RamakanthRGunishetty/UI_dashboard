@@ -1,4 +1,4 @@
-# Analytucs UI Dashboard Documentation
+# Analytics UI Dashboard Documentation
 
 ## Table of Contents
 
