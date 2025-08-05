@@ -8,10 +8,18 @@ const data = [
   { label: "E-mail $48.96", value: 48.96, color: "#B1E3FF" },
 ];
 
-const CustomPieChart = ({ title }:Title) => {
-    
+type Title = {
+  title: string;
+};
+
+const CustomPieChart = ({ title }: Title) => {
   return (
-    <Stack direction="row" className="pie-chart">
+    <Stack
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      className="pie-chart"
+    >
       <h6>{title}</h6>
       <PieChart
         series={[
@@ -39,7 +47,6 @@ const CustomPieChart = ({ title }:Title) => {
       />
     </Stack>
   );
-  
-}
+};
 
 export default CustomPieChart;

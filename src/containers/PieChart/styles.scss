@@ -1,58 +1,57 @@
 .pie-chart {
-    height: 100%;
-    flex-direction: column !important;
-    margin-bottom: 16px;
-    
-    @media screen and (max-width: 768px) {
-        margin-bottom: 12px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column !important;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 16px;
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: 12px;
+  }
+
+  @media screen and (max-width: 480px) {
+    margin-bottom: 8px;
+  }
+
+  h6 {
+    @include font-bold;
+    color: $font-primary;
+    margin: 0 0 12px 0;
+  }
+
+  // Center the SVG wrapper and allow responsiveness
+  svg,
+  .css-1kvykny-MuiResponsiveChart-container,
+  [class*="MuiResponsiveChart-container"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .MuiChartsLegend-series {
+    tspan {
+      @include font-bold;
+      font-size: 12px;
+      fill: $font-primary;
     }
-    
-    @media screen and (max-width: 480px) {
-        margin-bottom: 8px;
-    }
+  }
 
-    h6 {
-        @include font-bold;
-        color: $font-primary;
-        margin: 0;
-    }
+  .MuiChartsLegend-series:nth-child(1) tspan {
+    word-spacing: 58px;
+  }
 
-    // Center align MUI Responsive Chart container
-    .css-1kvykny-MuiResponsiveChart-container,
-    [class*="MuiResponsiveChart-container"] {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        text-align: center !important;
-    }
+  .MuiChartsLegend-series:nth-child(3) tspan {
+    word-spacing: 30px;
+  }
 
-    .MuiChartsLegend-series {
-        tspan {
-            @include font-bold;
-            font-size: 12px;
-            fill: $font-primary;
-            word-spacing: 48px;
-
-        }
-
-    }
-
-    .MuiChartsLegend-series:nth-child(1) {
-        tspan {
-            word-spacing: 58px;
-        }
-    }
-
-    .MuiChartsLegend-series:nth-child(3) {
-        tspan {
-            word-spacing: 30px;
-        }
-    }
-
-    .MuiChartsLegend-series:nth-child(4) {
-        tspan {
-            word-spacing: 57px;
-        }
-    }
-
+  .MuiChartsLegend-series:nth-child(4) tspan {
+    word-spacing: 57px;
+  }
 }
