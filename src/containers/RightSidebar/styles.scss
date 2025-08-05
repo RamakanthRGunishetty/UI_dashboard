@@ -11,6 +11,7 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
     overflow-x: hidden;
+    z-index: 1500; // Ensure it's above overlay on all screen sizes
 
     // Collapsed state - hide the sidebar completely
     &.collapsed {
@@ -37,7 +38,7 @@
         position: fixed;
         top: 0;
         right: 0;
-        z-index: 1001; // Above navbar
+        z-index: 1600; // Above overlay and navbar
         width: 280px; // Wider for better mobile experience
         min-width: 280px;
         height: 100vh;

@@ -215,9 +215,9 @@ const Home = () => {
 
   const currentPageTitle = isDashboard ? "eCommerce" : "Orders";
   
-  // Overlay conditions - left sidebar closes when clicking anywhere
+  // Overlay conditions - both sidebars show overlay when opened
   const shouldShowDrawerOverlay = isDrawerOpen; // Show overlay for all screen sizes when left sidebar is open
-  const shouldShowRightSidebarBackdrop = (viewport.width > 440 && viewport.width <= 940) && isRightSidebarOpen; // Same logic as right sidebar
+  const shouldShowRightSidebarBackdrop = isRightSidebarOpen; // Show overlay for all screen sizes when right sidebar is open
   
   return (
     <main 
@@ -235,10 +235,10 @@ const Home = () => {
         />
       )}
       
-      {/* Very Small Screen Close Overlay - for ≤440px when right sidebar is open */}
-      {viewport.width <= 440 && isRightSidebarOpen && (
+      {/* Right Sidebar Overlay - Covers entire screen when right sidebar is open */}
+      {shouldShowRightSidebarBackdrop && (
         <div
-          className="very-small-overlay right-sidebar-overlay"
+          className="drawer-overlay right-sidebar-overlay"
           onClick={() => setIsRightSidebarOpen(false)}
           aria-hidden="true"
         />
@@ -277,15 +277,6 @@ const Home = () => {
 
       {/* Right Sidebar - Now responsive for all screen sizes */}
       <RightSidebar isOpen={isRightSidebarOpen} onClose={() => setIsRightSidebarOpen(false)} />
-      
-      {/* Mobile backdrop overlay when right sidebar is open - EXCLUDE 941px-1399px range */}
-      {shouldShowRightSidebarBackdrop && (
-        <div 
-          className="mobile-sidebar-backdrop right-sidebar-backdrop" 
-          onClick={() => setIsRightSidebarOpen(false)}
-          aria-label="Close right sidebar"
-        />
-      )}
 
       {/* Notification Overlays and Toasts */}
       {showNotifications && (

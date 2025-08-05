@@ -5,7 +5,7 @@
     position: relative;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    // Left sidebar drawer overlay - covers entire screen when sidebar is open
+    // Drawer overlay - covers entire screen when any sidebar is open
     .drawer-overlay {
         position: fixed;
         top: 0;
@@ -29,6 +29,11 @@
         @media screen and (min-width: 1400px) {
             background: rgba(0, 0, 0, 0.2); // Very light background for large screens
             backdrop-filter: none;
+        }
+        
+        // Right sidebar overlay - same styling but different z-index to avoid conflicts
+        &.right-sidebar-overlay {
+            z-index: 1400; // Slightly lower than left sidebar to prevent conflicts
         }
     }
     
