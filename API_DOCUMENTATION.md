@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document outlines the data structures and interfaces used in the Snow Dashboard application. Currently, the application uses static JSON data, but this documentation provides the foundation for future API integration.
+This document outlines the data structures and interfaces used in the Analytics UI Dashboard application. Currently, the application uses static JSON data, but this documentation provides the foundation for future API integration.
 
 ## Data Models
 
