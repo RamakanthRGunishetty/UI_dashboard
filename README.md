@@ -1,10 +1,10 @@
-# Snow Dashboard ❄️
+# Analytics UI Dashboard ❄️
 
 A modern, responsive React dashboard implementation based on the [Snow UI](https://snowui.framer.website/) design system. Built with TypeScript, SCSS, and Material-UI, this dashboard provides a comprehensive analytics and data visualization interface.
 
 ## 🚀 Live Demo
 
-**[View Live Dashboard →](https://analytics-dashboard-hub.netlify.app/)**
+**[View Live Dashboard →](https://analytics-ui-dashboard.netlify.app/)**
 
 Experience the full functionality of Snow Dashboard with interactive charts, responsive design, and dual theme support.
 
@@ -186,7 +186,7 @@ src/
 
 ## 🚀 Deployment
 
-The Snow Dashboard is currently deployed and accessible at:
+The Analytics UI Dashboard is currently deployed and accessible at:
 
 **Production URL**: [https://analytics-dashboard-hub.netlify.app/](https://analytics-dashboard-hub.netlify.app/)
 
@@ -219,9 +219,6 @@ The project is optimized for various hosting platforms:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
