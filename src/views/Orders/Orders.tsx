@@ -53,7 +53,6 @@ const Order = () => {
   const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' } | null>(null);
   const [selectedOrder, setSelectedOrder] = useState<OrderItem | null>(null);
   const [showOrderDetails, setShowOrderDetails] = useState(false);
-  const [showAddOrderModal, setShowAddOrderModal] = useState(false);
 
   const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
   
@@ -71,13 +70,10 @@ const Order = () => {
   
   // Search with debouncing
   const [searchTimeout, setSearchTimeout] = useState<number | null>(null);
-  
-  // Dynamic order list state
-  const [orderList, setOrderList] = useState<OrderItem[]>(rows as OrderItem[]);
 
   // Filtered and sorted data
   const filteredAndSortedRows = useMemo(() => {
-    let filtered = [...orderList];
+    let filtered = [...rows];
     
     // Apply search filter
     if (filters.search) {
@@ -108,7 +104,7 @@ const Order = () => {
     }
     
     return filtered;
-  }, [orderList, filters, sortConfig]);
+  }, [filters, sortConfig]);
 
   // Animation effects for new rows
   useEffect(() => {
@@ -235,29 +231,6 @@ const Order = () => {
       type: 'success' 
     });
   }, [selectedRows, filteredAndSortedRows]);
-
-  // Add order handler
-  const handleAddOrder = useCallback((newOrderData: Omit<OrderItem, 'id'>) => {
-    // Generate a new ID in the format #CM98XX
-    const nextId = `#CM98${String(orderList.length + 1).padStart(2, '0')}`;
-    
-    const newOrder: OrderItem = {
-      ...newOrderData,
-      id: nextId,
-      date: 'Just now'
-    };
-
-    // Add to the beginning of the list with animation
-    setOrderList(prev => [newOrder, ...prev]);
-    setRowsToAnimate([nextId]);
-    
-    // Close modal and show success notification
-    setShowAddOrderModal(false);
-    setNotification({ 
-      message: 'Order added successfully!', 
-      type: 'success' 
-    });
-  }, [orderList.length]);
   
   // Responsive column configuration based on screen size
   const getResponsiveColumns = () => {
@@ -495,7 +468,7 @@ const Order = () => {
         <div className="action-group">
           <button 
             className="action-btn primary"
-            onClick={() => setShowAddOrderModal(true)}
+            onClick={() => setNotification({ message: 'Add Order feature coming soon!', type: 'info' })}
             title="Add Order"
           >
             <Icon type="add-plus-icon" />
@@ -608,9 +581,6 @@ const Order = () => {
       <div className="order-list-table">
         <Table rows={filteredAndSortedRows} columns={columns} properties={tableProps} />
       </div>
-
-      {/* Add Order Modal */}
-      {showAddOrderModal && <AddOrderModal onClose={() => setShowAddOrderModal(false)} onSubmit={handleAddOrder} />}
 
       {/* Order Details Modal */}
       {showOrderDetails && selectedOrder && (
@@ -728,179 +698,6 @@ const Order = () => {
       default: return "#8A8CD9";
     }
   }
-};
-
-// Add Order Modal Component
-interface AddOrderModalProps {
-  onClose: () => void;
-  onSubmit: (orderData: Omit<OrderItem, 'id'>) => void;
-}
-
-const AddOrderModal = ({ onClose, onSubmit }: AddOrderModalProps) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    project: '',
-    address: '',
-    status: 'Pending' as OrderItem['status'],
-    avatar: 'default-avatar',
-    alt: '',
-    priority: 'Medium' as 'Low' | 'Medium' | 'High',
-    amount: 0
-  });
-  
-  const [errors, setErrors] = useState<{[key: string]: string}>({});
-
-  const handleInputChange = (field: string, value: string | number) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-    // Clear error when user starts typing
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: '' }));
-    }
-  };
-
-  const validateForm = () => {
-    const newErrors: {[key: string]: string} = {};
-    
-    if (!formData.name.trim()) newErrors.name = 'Customer name is required';
-    if (!formData.project.trim()) newErrors.project = 'Project name is required';
-    if (!formData.address.trim()) newErrors.address = 'Address is required';
-    if (formData.amount <= 0) newErrors.amount = 'Amount must be greater than 0';
-    
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (validateForm()) {
-      const submitData = {
-        ...formData,
-        alt: formData.name, // Use name as alt text
-        date: 'Just now' // Will be overridden in the handler
-      };
-      onSubmit(submitData);
-    }
-  };
-
-  return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="add-order-modal" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
-          <h3>Add New Order</h3>
-          <button className="close-btn" onClick={onClose}>×</button>
-        </div>
-        
-        <form onSubmit={handleSubmit} className="modal-content">
-          <div className="form-section">
-            <h4>Customer Information</h4>
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="customerName">Customer Name *</label>
-                <input
-                  id="customerName"
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => handleInputChange('name', e.target.value)}
-                  className={errors.name ? 'error' : ''}
-                  placeholder="Enter customer name"
-                />
-                {errors.name && <span className="error-text">{errors.name}</span>}
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="address">Address *</label>
-                <input
-                  id="address"
-                  type="text"
-                  value={formData.address}
-                  onChange={(e) => handleInputChange('address', e.target.value)}
-                  className={errors.address ? 'error' : ''}
-                  placeholder="Enter customer address"
-                />
-                {errors.address && <span className="error-text">{errors.address}</span>}
-              </div>
-            </div>
-          </div>
-
-          <div className="form-section">
-            <h4>Project Details</h4>
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="project">Project Name *</label>
-                <input
-                  id="project"
-                  type="text"
-                  value={formData.project}
-                  onChange={(e) => handleInputChange('project', e.target.value)}
-                  className={errors.project ? 'error' : ''}
-                  placeholder="Enter project name"
-                />
-                {errors.project && <span className="error-text">{errors.project}</span>}
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="amount">Amount ($) *</label>
-                <input
-                  id="amount"
-                  type="number"
-                  min="0"
-                  step="0.01"
-                  value={formData.amount}
-                  onChange={(e) => handleInputChange('amount', parseFloat(e.target.value) || 0)}
-                  className={errors.amount ? 'error' : ''}
-                  placeholder="0.00"
-                />
-                {errors.amount && <span className="error-text">{errors.amount}</span>}
-              </div>
-            </div>
-          </div>
-
-          <div className="form-section">
-            <h4>Order Settings</h4>
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="status">Status</label>
-                <select
-                  id="status"
-                  value={formData.status}
-                  onChange={(e) => handleInputChange('status', e.target.value)}
-                >
-                  <option value="Pending">Pending</option>
-                  <option value="In Progress">In Progress</option>
-                  <option value="Approved">Approved</option>
-                  <option value="Complete">Complete</option>
-                  <option value="Rejected">Rejected</option>
-                </select>
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="priority">Priority</label>
-                <select
-                  id="priority"
-                  value={formData.priority}
-                  onChange={(e) => handleInputChange('priority', e.target.value)}
-                >
-                  <option value="Low">Low</option>
-                  <option value="Medium">Medium</option>
-                  <option value="High">High</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div className="modal-footer">
-            <button type="button" className="btn secondary" onClick={onClose}>
-              Cancel
-            </button>
-            <button type="submit" className="btn primary">
-              Add Order
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
 };
 
 export default Order;
