@@ -1,0 +1,61 @@
+.world-map-wrapper {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: auto;
+    min-height: 350px;
+    padding: 20px;
+    background-color: $background-secondary;
+    border-radius: 16px;
+    display: grid;
+    gap: 14px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    
+    @media screen and (max-width: 1200px) {
+        min-height: 320px;
+        padding: 18px;
+        gap: 12px;
+    }
+    
+    @media screen and (max-width: 1024px) {
+        min-height: 300px;
+        padding: 16px;
+        gap: 10px;
+    }
+    
+    @media screen and (max-width: 768px) {
+        width: 100%;
+        height: auto;
+        min-height: auto;
+        padding: 16px;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+    
+    @media screen and (max-width: 480px) {
+        padding: 12px;
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+
+    h6 {
+        @include font-bold;
+        color: $font-primary;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+
+    }
+
+    .all-tag-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 0 10px;
+    }
+
+    @media screen and (max-width: $width-screen-md-4) {
+        min-height: 250px;
+    }
+}

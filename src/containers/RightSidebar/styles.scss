@@ -1,0 +1,524 @@
+.right-sidebar {
+    height: 100vh;
+    border-left: 1px solid $border-color;
+    width: 240px;
+    min-width: 240px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: var(--bg-color-secondary, $background-secondary);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    // Collapsed state - hide the sidebar completely
+    &.collapsed {
+        width: 0;
+        min-width: 0;
+        padding: 0;
+        border-left: none;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(100%);
+    }
+
+    // Expanded state - ensure it's visible
+    &.expanded {
+        width: 240px;
+        min-width: 240px;
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+    }
+
+    // Mobile screens (≤479px) - Overlay sidebar
+    @media screen and (max-width: 479px) {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1001; // Above navbar
+        width: 280px; // Wider for better mobile experience
+        min-width: 280px;
+        height: 100vh;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+        
+        // When collapsed on mobile, slide out to the right
+        &.collapsed {
+            transform: translateX(100%);
+            width: 280px; // Keep width for smooth animation
+            min-width: 280px;
+        }
+        
+        // When expanded on mobile, slide in from the right
+        &.expanded {
+            transform: translateX(0);
+        }
+    }
+
+    // Responsive adjustments for different screen sizes
+    
+    // Large screens (1200px+) - default styles apply
+    
+    // Medium-large screens (1024px - 1199px)
+    @media screen and (max-width: 1199px) {
+        padding: 16px;
+        gap: 12px;
+    }
+    
+    // Medium screens (768px - 1023px) - slightly reduced width
+    @media screen and (max-width: 1023px) {
+        width: 220px;
+        min-width: 220px;
+        padding: 14px;
+        gap: 10px;
+        
+        &.expanded {
+            width: 220px;
+            min-width: 220px;
+        }
+    }
+
+    // Small-medium screens (480px - 767px) - compact layout
+    @media screen and (max-width: 767px) {
+        width: 200px;
+        min-width: 200px;
+        padding: 12px;
+        gap: 8px;
+        
+        &.expanded {
+            width: 200px;
+            min-width: 200px;
+        }
+    }
+
+    // Custom scrollbar
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--border-color, $border-color);
+        border-radius: 2px;
+    }
+
+    // Icon-only mode for screens <940px
+    &.icon-only {
+        width: 48px;
+        min-width: 48px;
+        padding: 16px 8px;
+        cursor: pointer;
+        align-items: center;
+        
+        // Special styling for 480px-939px range
+        @media screen and (min-width: 480px) and (max-width: 939px) {
+            border-left: 2px solid white;
+        }
+
+        .sidebar-icons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+
+            .icon-item {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 44px; // Enhanced touch target
+                height: 44px; // Enhanced touch target
+                border-radius: 8px;
+                background: var(--bg-color-primary, $background-primary);
+                transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+                cursor: pointer;
+                
+                // Use white color only for all themes and states
+                color: white;
+                border: 1px solid transparent;
+                
+                // Default nice visual state
+                box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+                
+                .svg-icon {
+                    color: white !important;
+                    fill: white !important;
+                    stroke: white !important;
+                }
+                
+                // Desktop hover interactions - no color changes, just subtle effects
+                @media (hover: hover) and (pointer: fine) {
+                    &:hover {
+                        transform: translateX(-2px) scale(1.05);
+                        box-shadow: -2px 0 12px rgba(255, 255, 255, 0.3);
+                        // Keep original colors - no background or icon color changes
+                        
+                        // Add bell ring animation for notification icon
+                        .svg-icon svg {
+                            animation: bellRing 0.8s ease-in-out;
+                            transform-origin: top center;
+                        }
+                    }
+                }
+                
+                // Touch interactions for mobile/tablet
+                @media (hover: none) and (pointer: coarse) {
+                    width: 48px; // Larger touch target on mobile
+                    height: 48px;
+                    
+                    &:active {
+                        transform: scale(0.95);
+                        // Keep original colors - no background or icon color changes
+                    }
+                }
+                
+                // Enhanced focus state
+                &:focus-visible {
+                    outline: 2px solid white;
+                    outline-offset: 2px;
+                    // Keep original colors - no background or icon color changes
+                }
+                
+                // Ripple effect for touch feedback
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 0;
+                    height: 0;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.3);
+                    transform: translate(-50%, -50%);
+                    transition: width 0.3s ease, height 0.3s ease;
+                    pointer-events: none;
+                }
+                
+                &:active::after {
+                    width: 32px;
+                    height: 32px;
+                }
+
+                .svg-icon {
+                    width: 20px;
+                    height: 20px;
+                    color: white;
+                    transition: all 0.2s ease;
+                    
+                    // Ensure proper icon rendering
+                    fill: currentColor;
+                    stroke: currentColor;
+                }
+
+                .notification-badge {
+                    position: absolute;
+                    top: -2px;
+                    right: -2px;
+                    background: #ff4757;
+                    color: white;
+                    border-radius: 50%;
+                    width: 16px;
+                    height: 16px;
+                    font-size: 0.6rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: 600;
+                    border: 2px solid var(--bg-color-primary, $background-primary);
+                    z-index: 1;
+                }
+            }
+            
+            // Additional icon color fixes for all states
+            .icon-item {
+                // Force proper icon coloring
+                .svg-icon,
+                svg {
+                    color: var(--Primary-Brand, #007bff) !important;
+                    fill: var(--Primary-Brand, #007bff) !important;
+                    stroke: var(--Primary-Brand, #007bff) !important;
+                }
+                
+                // Icon colors on hover/active
+                &:hover,
+                &:active,
+                &:focus {
+                    .svg-icon,
+                    svg {
+                        color: white !important;
+                        fill: white !important;
+                        stroke: white !important;
+                    }
+                }
+            }
+            
+            // Parent hover state icon fixes
+            &:hover .icon-item {
+                .svg-icon,
+                svg {
+                    color: white !important;
+                    fill: white !important;
+                    stroke: white !important;
+                }
+            }
+        }
+    }
+
+    // Expanded state
+    &.expanded {
+        width: 240px;
+        min-width: 240px;
+        padding: 20px;
+        z-index: 9999 !important; // EXTREMELY HIGH - Sidebar must be above everything
+        isolation: isolate; // Create independent stacking context
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+        position: relative;
+        
+        // Close button for expanded state
+        .close-button {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 32px;
+            height: 32px;
+            background: var(--bg-color-primary, $background-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-color, $border-color);
+            z-index: 10;
+            
+            &:hover {
+                background: var(--Primary-Brand, #007bff);
+                color: white;
+                transform: scale(1.1);
+                box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+                
+                .svg-icon {
+                    color: white;
+                }
+            }
+            
+            &:active {
+                transform: scale(0.95);
+            }
+            
+            .svg-icon {
+                width: 16px;
+                height: 16px;
+                color: var(--font-color-primary, $font-primary);
+                transition: color 0.2s ease;
+            }
+        }
+        
+        .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            height: 100%;
+            overflow-y: auto;
+        }
+    }
+
+    // Full content mode (default state)
+    .sidebar-content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        gap: 16px;
+        padding-top: 0;
+        
+        // Responsive adjustments for content
+        @media screen and (max-width: 1200px) {
+            gap: 12px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            gap: 10px;
+        }
+        
+        // Each content section
+        .notifications,
+        .activities,
+        .contacts {
+            flex-shrink: 0;
+            
+            // Responsive typography and spacing
+            @media screen and (max-width: 1023px) {
+                font-size: 0.85rem;
+                
+                h3, h4 {
+                    font-size: 0.9rem;
+                    margin-bottom: 8px;
+                }
+                
+                p, span {
+                    font-size: 0.8rem;
+                    line-height: 1.3;
+                }
+                
+                .card-item {
+                    padding: 8px;
+                    margin-bottom: 6px;
+                }
+            }
+            
+            @media screen and (max-width: 767px) {
+                font-size: 0.8rem;
+                
+                h3, h4 {
+                    font-size: 0.85rem;
+                    margin-bottom: 6px;
+                }
+                
+                p, span {
+                    font-size: 0.75rem;
+                    line-height: 1.2;
+                }
+                
+                .card-item {
+                    padding: 6px;
+                    margin-bottom: 4px;
+                }
+                
+                // Compact avatar sizes
+                .user-avatar {
+                    width: 24px;
+                    height: 24px;
+                }
+                
+                // Smaller icons
+                .svg-icon {
+                    width: 16px;
+                    height: 16px;
+                }
+            }
+        }
+    }
+
+    // Always show content on all tablet and desktop sizes
+    // Content will be responsive based on the width settings above
+    
+    .sidebar-content {
+        display: flex !important;
+        flex-direction: column;
+        visibility: visible !important;
+    }
+    
+    .sidebar-icons {
+        display: none !important;
+    }
+
+    @media screen and (max-width: $width-screen-md-1) {
+        padding: 20px 16px;
+    }
+
+    @media screen and (max-width: 479px) {
+        width: 240px;
+        min-width: 240px;
+        padding: 16px;
+
+        .card-list-wrapper {
+            p {
+                font-size: 0.875rem;
+            }
+        }
+    }
+
+    // Responsive text support - make text smaller instead of hiding
+    @media screen and (max-width: $width-screen-md-2) {
+        .card-list-wrapper {
+            p {
+                font-size: 0.75rem;
+                line-height: 1.2;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                max-width: 100%;
+            }
+            
+            .card-list-item-wrapper {
+                padding: 2px;
+                gap: 4px;
+                
+                .time {
+                    font-size: 0.7rem;
+                }
+            }
+        }
+    }
+
+    // Focus states for accessibility - removed black focus ring
+    &:focus-within {
+        outline: none;
+    }
+
+    // High contrast mode support
+    @media (prefers-contrast: high) {
+        border-left-width: 2px;
+        
+        .icon-item {
+            border: 1px solid var(--border-color);
+            
+            &:hover {
+                border-color: var(--Primary-Brand);
+            }
+        }
+    }
+
+    // Reduced motion support
+    @media (prefers-reduced-motion: reduce) {
+        transition: width 0.1s ease;
+        
+        .icon-item {
+            transition: none;
+            
+            &:hover {
+                transform: none;
+            }
+        }
+    }
+}
+
+// Overlay for expanded state (similar to modal backdrop)
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 9998; // Just below the sidebar
+    backdrop-filter: blur(2px);
+    cursor: pointer;
+    animation: fadeIn 0.3s ease;
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+        animation: none;
+    }
+}
+
+// Keyframe animation for notification bell ring
+@keyframes bellRing {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: rotate(-3deg);
+    }
+    20%, 40%, 60%, 80% {
+        transform: rotate(3deg);
+    }
+}

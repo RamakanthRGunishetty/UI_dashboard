@@ -1,0 +1,265 @@
+.datagrid-wrapper {
+    background-color: var(--bg-color-secondary) !important;
+    padding-bottom: clamp(12px, 3vw, 24px);
+    box-shadow: none !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    
+    // Very small screens (<440px) - Handle sidebar overlap and hide scrollbars
+    @media screen and (max-width: 439px) {
+        padding-bottom: 12px;
+        margin: 0 -4px;
+        padding-left: 4px;
+        padding-right: 4px;
+        font-size: 0.75rem;
+        
+        // Hide horizontal scrollbars on very small screens
+        overflow-x: hidden;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        
+        &::-webkit-scrollbar {
+            display: none; /* WebKit */
+        }
+        
+        // When sidebar is expanded, adjust for reduced space
+        .home-wrapper.mobile .sidebar-container.drawer-open ~ .main-wrapper & {
+            margin: 0 -2px;
+            padding-left: 2px;
+            padding-right: 2px;
+            padding-bottom: 8px;
+        }
+    }
+    
+    // Small mobile screens (440px-767px)
+    @media screen and (min-width: 440px) and (max-width: 767px) {
+        padding-bottom: 16px;
+        margin: 0 -6px;
+        padding-left: 6px;
+        padding-right: 6px;
+        font-size: 0.8rem;
+    }
+    
+    // Tablet screens (768px-1023px)
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+        padding-bottom: 18px;
+        margin: 0 -8px;
+        padding-left: 8px;
+        padding-right: 8px;
+        font-size: 0.875rem;
+    }
+    
+    // Desktop screens (≥1024px)
+    @media screen and (min-width: 1024px) {
+        padding-bottom: 24px;
+        font-size: 0.875rem;
+    }
+
+
+
+    .MuiDataGrid-row {
+        outline: none !important;
+        border: none !important;
+        
+        &:focus {
+            outline: none !important;
+            border: none !important;
+        }
+        
+        &.Mui-selected {
+            outline: none !important;
+            border: none !important;
+            background-color: transparent !important;
+        }
+        
+        &:hover {
+            outline: none !important;
+            border: none !important;
+        }
+        
+        .MuiDataGrid-cell {
+            border-top: none;
+            outline: none !important;
+            border: none !important;
+            
+            &:focus {
+                outline: none !important;
+                border: none !important;
+            }
+        }
+    }
+
+    .MuiDataGrid-columnHeaders {
+        .MuiDataGrid-columnHeader {
+            .MuiDataGrid-iconSeparator {
+                display: none;
+            }
+        }
+    }
+
+
+    .MuiDataGrid-columnHeaderTitleContainer {
+        color: var(--font-color-light);
+    }
+
+    .MuiDataGrid-container--top [role=row] {
+        background-color: transparent !important;
+    }
+
+    .MuiDataGrid-cell {
+        @include font-basic;
+        color: var(--font-color-primary);
+        outline: none !important;
+        border: none !important;
+        font-size: clamp(0.7rem, 1.8vw, 0.875rem);
+        padding: clamp(4px, 1.5vw, 8px) clamp(6px, 2vw, 12px);
+        
+        // Very small screens
+        @media screen and (max-width: 439px) {
+            font-size: 0.7rem;
+            padding: 4px 6px;
+            line-height: 1.2;
+            
+            // When sidebar expanded, reduce padding further
+            .home-wrapper.mobile .sidebar-container.drawer-open ~ .main-wrapper & {
+                padding: 3px 4px;
+                font-size: 0.65rem;
+            }
+        }
+        
+        // Small mobile
+        @media screen and (min-width: 440px) and (max-width: 767px) {
+            font-size: 0.75rem;
+            padding: 6px 8px;
+        }
+        
+        // Tablet
+        @media screen and (min-width: 768px) and (max-width: 1023px) {
+            font-size: 0.8rem;
+            padding: 8px 10px;
+        }
+        
+        // Desktop
+        @media screen and (min-width: 1024px) {
+            font-size: 0.875rem;
+            padding: 8px 12px;
+        }
+        
+        &:focus {
+            outline: none !important;
+            border: none !important;
+        }
+        
+        &:focus-within {
+            outline: none !important;
+            border: none !important;
+        }
+    }
+
+    .MuiTablePagination-displayedRows {
+        @include font-basic;
+        color: var(--font-color-light);
+    }
+
+    .MuiTablePagination-actions {
+        .MuiIconButton-root {
+            color: var(--font-color-primary);
+            transition: all 0.2s ease;
+            
+            &:hover:not(.Mui-disabled) {
+                background-color: var(--bg-hover);
+            }
+            
+            &.Mui-disabled {
+                color: var(--font-color-disabled);
+                cursor: not-allowed;
+                opacity: 0.5;
+                
+                svg {
+                    fill: var(--font-color-disabled);
+                }
+                
+                &:hover {
+                    background-color: transparent;
+                }
+            }
+            
+            svg {
+                fill: var(--font-color-primary);
+                transition: fill 0.2s ease;
+            }
+        }
+    }
+
+    // Pagination dropdown styling
+    .MuiTablePagination-select {
+        color: var(--font-color-primary) !important;
+        background-color: var(--bg-color-secondary) !important;
+        border: 1px solid var(--border-color) !important;
+        outline: none !important;
+        
+        &:focus {
+            border-color: var(--border-color) !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+        
+        &:active {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+    }
+
+    .MuiSelect-icon {
+        color: var(--font-color-primary) !important;
+    }
+    
+    // Remove all focus rings and selection outlines
+    .MuiDataGrid-root {
+        outline: none !important;
+        border: none !important;
+        
+        // Hide scrollbars on small screens
+        @media screen and (max-width: 439px) {
+            overflow-x: hidden !important;
+            scrollbar-width: none !important; /* Firefox */
+            -ms-overflow-style: none !important; /* Internet Explorer 10+ */
+            
+            &::-webkit-scrollbar {
+                display: none !important; /* WebKit */
+            }
+            
+            .MuiDataGrid-virtualScroller {
+                overflow-x: hidden !important;
+                scrollbar-width: none !important;
+                -ms-overflow-style: none !important;
+                
+                &::-webkit-scrollbar {
+                    display: none !important;
+                }
+            }
+        }
+        
+        * {
+            outline: none !important;
+        }
+        
+        .MuiDataGrid-cell--withRenderer {
+            outline: none !important;
+            border: none !important;
+        }
+        
+        .MuiDataGrid-cellContent {
+            outline: none !important;
+        }
+        
+        .MuiCheckbox-root {
+            outline: none !important;
+            
+            &:focus {
+                outline: none !important;
+            }
+        }
+    }
+}

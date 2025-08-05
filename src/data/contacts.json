@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "avatar": "natali-craig-avatar",
+        "title": "Natali Craig",
+        "icon": "",
+        "alt": "Natali Craig"
+    },
+    {
+        "id": 2,
+        "avatar": "drew-cano-avatar",
+        "title": "Drew Cano",
+        "icon": "",
+        "alt": "Drew Cano"
+    },
+    {
+        "id": 3,
+        "avatar": "orlando-diggs-avatar",
+        "title": "Orlando Diggs",
+        "icon": "",
+        "alt": "Orlando Diggs"
+    },
+    {
+        "id": 4,
+        "avatar": "andi-lane-avatar",
+        "title": "Andi Lane",
+        "icon": "",
+        "alt": "Andi Lane"
+    },
+    {
+        "id": 5,
+        "avatar": "kate-morrison-avatar",
+        "title": "Kate Morrison",
+        "icon": "",
+        "alt": "Kate Morrison"
+    },
+    {
+        "id": 6,
+        "avatar": "koray-okumus-avatar",
+        "title": "Koray Okumus",
+        "icon": "",
+        "alt": "Koray Okumus"
+    }
+]

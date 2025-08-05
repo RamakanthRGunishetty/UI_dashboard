@@ -1,0 +1,332 @@
+// ResponsiveLayoutManager Styles
+// Manages layout between Sidebar and OrderList with mobile-first approach
+
+.responsive-layout {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-x: hidden;
+
+  // Mobile Hamburger Button
+  .mobile-hamburger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1400;
+    width: 48px;
+    height: 48px;
+    background: var(--Primary-Brand, #007bff);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    transition: all 0.2s ease;
+    
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(0, 123, 255, 0.4);
+    }
+    
+    &:active {
+      transform: scale(0.95);
+    }
+    
+    &:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 2px;
+    }
+    
+    .hamburger-icon {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      
+      span {
+        width: 18px;
+        height: 2px;
+        background: white;
+        border-radius: 1px;
+        transition: all 0.2s ease;
+      }
+    }
+  }
+
+  // Drawer Overlay
+  .drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1500;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease;
+  }
+
+  // Sidebar Container - HIGHEST Z-INDEX
+  .sidebar-container {
+    background: var(--bg-color-secondary, #ffffff);
+    border-right: 1px solid var(--border-color, #e0e0e0);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999 !important; // EXTREMELY HIGH - Sidebar must be above everything
+    isolation: isolate; // Create independent stacking context
+    
+    .drawer-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      color: var(--font-color-primary);
+      font-size: 20px;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+      
+      &:hover {
+        background: var(--bg-hover, rgba(0, 0, 0, 0.1));
+      }
+      
+      &:focus-visible {
+        outline: 2px solid var(--Primary-Brand, #007bff);
+        outline-offset: 1px;
+      }
+    }
+  }
+
+  // Main Content Area
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: var(--bg-color-primary, #f8f9fa);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .navbar-container {
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--border-color, #e0e0e0);
+    background: var(--bg-color-secondary, #ffffff);
+  }
+
+  .orderlist-container {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0;
+    background: var(--bg-color-primary, #f8f9fa);
+  }
+
+  .right-sidebar-container {
+    width: 240px;
+    flex-shrink: 0;
+    background: var(--bg-color-secondary, #ffffff);
+    border-left: 1px solid var(--border-color, #e0e0e0);
+  }
+
+  // Desktop Layout (≥1024px)
+  &.desktop {
+    .sidebar-container {
+      width: 280px;
+      position: relative;
+      
+      &.visible {
+        transform: translateX(0);
+      }
+      
+      .drawer-close {
+        display: none;
+      }
+    }
+    
+    .mobile-hamburger {
+      display: none;
+    }
+  }
+
+  // Tablet Layout (768px-1023px)
+  &.tablet {
+    .sidebar-container {
+      width: 280px;
+      position: relative;
+      
+      &.visible {
+        transform: translateX(0);
+      }
+      
+      .drawer-close {
+        display: none;
+      }
+    }
+    
+    &.sidebar-collapsed .sidebar-container {
+      width: 64px;
+    }
+    
+    .mobile-hamburger {
+      display: none;
+    }
+  }
+
+  // Mobile Layout (440px-767px)
+  &.mobile {
+    .sidebar-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 280px;
+      transform: translateX(-100%);
+      
+      &.visible {
+        transform: translateX(0);
+      }
+    }
+    
+    .main-content {
+      width: 100%;
+      margin-left: 0;
+    }
+    
+    .mobile-hamburger {
+      display: none; // Handled by navbar on mobile
+    }
+  }
+
+  // Very Small Layout (<440px) - OrderList takes precedence
+  &.very-small {
+    flex-direction: column;
+    
+    .sidebar-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 280px;
+      transform: translateX(-100%);
+      
+      &.visible {
+        transform: translateX(0);
+      }
+      
+      &.hidden {
+        transform: translateX(-100%);
+      }
+    }
+    
+    .main-content {
+      width: 100%;
+      margin-left: 0;
+      flex: 1;
+    }
+    
+    .orderlist-container {
+      padding: 16px 12px;
+    }
+    
+    .right-sidebar-container {
+      display: none; // Hide right sidebar on very small screens
+    }
+    
+    // Show hamburger when sidebar is hidden
+    .mobile-hamburger {
+      display: flex;
+    }
+    
+    &.sidebar-visible .mobile-hamburger {
+      display: none;
+    }
+  }
+
+  // OrderList Full Width Mode
+  &.orderlist-fullwidth {
+    .orderlist-container {
+      width: 100%;
+      max-width: 100%;
+      padding: 12px 8px;
+    }
+  }
+
+  // Drawer Mode Adjustments
+  &.drawer-mode {
+    .sidebar-container {
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  // Animations
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  // Accessibility Enhancements
+  @media (prefers-reduced-motion: reduce) {
+    .sidebar-container,
+    .main-content,
+    .mobile-hamburger {
+      transition: none;
+    }
+    
+    .drawer-overlay {
+      animation: none;
+    }
+  }
+
+  // High Contrast Mode
+  @media (prefers-contrast: high) {
+    .sidebar-container,
+    .main-content {
+      border-width: 2px;
+    }
+    
+    .mobile-hamburger {
+      border: 2px solid white;
+    }
+  }
+
+  // Focus Management
+  &:focus-within {
+    outline: none;
+  }
+
+  // Print Styles
+  @media print {
+    .mobile-hamburger,
+    .drawer-overlay,
+    .drawer-close {
+      display: none !important;
+    }
+    
+    .sidebar-container {
+      position: static !important;
+      transform: none !important;
+      width: auto !important;
+    }
+  }
+}

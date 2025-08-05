@@ -1,0 +1,172 @@
+.line-chart-wrapper {
+    position: relative;
+    margin-bottom: 16px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 350px;
+    
+    @media screen and (max-width: 1200px) {
+        margin-bottom: 14px;
+        min-height: 320px;
+    }
+    
+    @media screen and (max-width: 1024px) {
+        min-height: 300px;
+    }
+    
+    @media screen and (max-width: 768px) {
+        margin-bottom: 12px;
+        min-height: auto;
+    }
+    
+    @media screen and (max-width: 480px) {
+        margin-bottom: 8px;
+    }
+
+    .graph-title {
+        position: absolute;
+        color: $font-primary;
+        z-index: 1; // Keep low - below sidebar
+        margin: 0;
+        padding-right: 10px;
+        top: 17px;
+        left: 18px;
+        border-right: 1px solid $border-color;
+        font-size: clamp(0.875rem, 2vw, 1rem);
+        
+        @media screen and (max-width: 768px) {
+            top: 15px;
+            left: 16px;
+            padding-right: 8px;
+            font-size: 0.875rem;
+        }
+        
+        @media screen and (max-width: 480px) {
+            top: 13px;
+            left: 12px;
+            padding-right: 6px;
+            font-size: 0.8rem;
+        }
+    }
+
+    .line-chart {
+        background-color: $background-secondary;
+        border-radius: 8px;
+        padding: 24px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        
+        @media screen and (max-width: 1200px) {
+            padding: 20px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            padding: 16px;
+        }
+        
+        @media screen and (max-width: 480px) {
+            padding: 12px;
+        }
+        
+        // Ensure chart responsiveness
+        .MuiChartsAxis-tick,
+        .MuiChartsAxis-tickLabel {
+            @media screen and (max-width: 768px) {
+                font-size: 0.75rem;
+            }
+            
+            @media screen and (max-width: 480px) {
+                font-size: 0.7rem;
+            }
+        }
+
+        .MuiChartsAxis-tickLabel {
+            fill: $font-light !important;
+
+        }
+
+        .MuiChartsGrid-line {
+            stroke: $border-color;
+        }
+
+        .MuiChartsAxis-line {
+            stroke: $font-light !important;
+            stroke-width: 0.5 !important;
+        }
+
+        // Center align MUI Responsive Chart container
+        .css-1kvykny-MuiResponsiveChart-container,
+        [class*="MuiResponsiveChart-container"] {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+        }
+
+        .MuiChartsLegend-series {
+            tspan {
+                @include font-bold;
+                font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+                fill: $font-primary;
+            }
+
+            .MuiChartsLegend-mark {
+                ry: 10;
+            }
+            
+            @media screen and (max-width: 1200px) {
+                tspan {
+                    font-size: 0.72rem;
+                }
+            }
+            
+            @media screen and (max-width: 768px) {
+                tspan {
+                    font-size: 0.7rem;
+                }
+                
+                .MuiChartsLegend-mark {
+                    ry: 8;
+                }
+            }
+            
+            @media screen and (max-width: 480px) {
+                tspan {
+                    font-size: 0.65rem;
+                }
+                
+                .MuiChartsLegend-mark {
+                    ry: 6;
+                }
+            }
+        }
+        
+        // Additional responsive enhancements
+        .MuiChartsAxis-root {
+            @media screen and (max-width: 480px) {
+                .MuiChartsAxis-tickLabel {
+                    font-size: 0.65rem !important;
+                }
+            }
+        }
+        
+        // Improve touch targets on mobile
+        @media (hover: none) and (pointer: coarse) {
+            .MuiChartsLegend-series {
+                cursor: pointer;
+                padding: 4px;
+                border-radius: 4px;
+                transition: background-color 0.2s ease;
+                
+                &:hover {
+                    background-color: rgba(168, 197, 218, 0.1);
+                }
+            }
+        }
+
+    }
+
+}

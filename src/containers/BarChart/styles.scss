@@ -1,0 +1,101 @@
+.bar-chart-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 16px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    
+    @media screen and (max-width: 1200px) {
+        margin-bottom: 14px;
+    }
+    
+    @media screen and (max-width: 768px) {
+        margin-bottom: 12px;
+    }
+    
+    @media screen and (max-width: 480px) {
+        margin-bottom: 8px;
+    }
+
+    .graph-title {
+        position: absolute;
+        color: $font-primary;
+        top: 0;
+        z-index: 1; // Keep low - below sidebar
+        padding: 0;
+        margin: 0;
+        top: 15px;
+        left: 18px;
+    }
+
+    .bar-chart {
+        background-color: $background-secondary;
+        border-radius: 8px;
+        padding: 24px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        
+        @media screen and (max-width: 1200px) {
+            padding: 20px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            padding: 16px;
+        }
+        
+        @media screen and (max-width: 480px) {
+            padding: 12px;
+        }
+        
+        // Ensure chart responsiveness
+        .MuiChartsAxis-tick,
+        .MuiChartsAxis-tickLabel {
+            @media screen and (max-width: 768px) {
+                font-size: 0.75rem;
+            }
+            
+            @media screen and (max-width: 480px) {
+                font-size: 0.7rem;
+            }
+        }
+
+        .MuiChartsAxis-tickLabel {
+            fill: $font-light !important;
+
+        }
+
+        .MuiChartsGrid-line {
+            stroke: $border-color;
+        }
+
+        .MuiChartsAxis-line {
+            stroke: $font-light !important;
+            stroke-width: 0.5 !important;
+        }
+
+        // Center align MUI Responsive Chart container
+        .css-1kvykny-MuiResponsiveChart-container,
+        [class*="MuiResponsiveChart-container"] {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+        }
+
+        .MuiChartsLegend-series {
+            tspan {
+                @include font-bold;
+                fill: $font-primary;
+
+            }
+
+            .MuiChartsLegend-mark {
+                display: none;
+            }
+        }
+    }
+}

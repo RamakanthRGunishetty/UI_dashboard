@@ -1,0 +1,32 @@
+@import "./config.scss";
+@import "./variables.scss";
+
+// containers
+@import "../containers/LeftSidebar/styles.scss";
+@import "../containers/Navbar/styles.scss";
+@import "../containers/RightSidebar/styles.scss";
+@import "../containers/BarChart/styles.scss";
+@import "../containers/LineChart/styles.scss";
+@import "../containers/WorldMap/styles.scss";
+@import "../containers/Table/styles.scss";
+@import "../containers/PieChart/styles.scss";
+
+// components
+@import "../components/Button/styles.scss";
+@import "../components/StatusBadge/styles.scss";
+@import "../containers/Menu/styles.scss";
+@import "../components/UserProfile/styles.scss";
+@import "../components/CardContainer/styles.scss";
+@import "../components/ListItem/styles.scss";
+@import "../components/Card/styles.scss";
+@import "../components/ProgressTag/styles.scss";
+@import "../components/Search/styles.scss";
+@import "../components/Pagination/styles.scss";
+@import "../components/Icon/styles.scss";
+
+// views
+@import "../views/Home/styles.scss";
+@import "../views/Dashboard/styles.scss";
+@import "../views/Orders/styles.scss";
+@import "pagination-dropdown.scss";
+

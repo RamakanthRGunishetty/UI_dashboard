@@ -1,0 +1,616 @@
+.home-wrapper {
+    background-color: $background-primary;
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    // Mobile drawer overlay
+    .drawer-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1500; // Below sidebar but above content
+        transition: opacity 0.3s ease;
+        backdrop-filter: blur(2px);
+        will-change: opacity; // GPU acceleration for overlay
+        contain: layout style paint; // Optimization hint
+        
+        // Disable blur for medium-large screens (940px-1399px) where blur is not needed
+        @media screen and (min-width: 940px) and (max-width: 1399px) {
+            backdrop-filter: none;
+            background: rgba(0, 0, 0, 0.2); // Lighter background without blur
+        }
+    }
+    
+    // Very small screen overlay - covers main content area to allow closing sidebar
+    .very-small-overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        background: transparent;
+        z-index: 1500; // Below sidebar but above content
+        cursor: pointer;
+        
+        // Left sidebar overlay - covers area to the right of left sidebar
+        &.left-sidebar-overlay {
+            left: 280px; // Start after left sidebar width
+            right: 0;
+            
+            // Visual hint that the area is clickable
+            &::after {
+                content: '← Tap to close menu';
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                padding: 8px 12px;
+                border-radius: 4px;
+                font-size: 0.75rem;
+                pointer-events: none;
+                animation: fadeInOut 3s ease-in-out infinite;
+            }
+        }
+        
+        // Right sidebar overlay - covers area to the left of right sidebar
+        &.right-sidebar-overlay {
+            left: 0;
+            right: 320px; // Start before right sidebar width (assuming 320px width)
+            
+            // Visual hint that the area is clickable
+            &::after {
+                content: 'Tap to close menu →';
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                padding: 8px 12px;
+                border-radius: 4px;
+                font-size: 0.75rem;
+                pointer-events: none;
+                animation: fadeInOut 3s ease-in-out infinite;
+            }
+        }
+        
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+    }
+    
+    // Sidebar overlay for expanded state on tablet
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 1100;
+        transition: opacity 0.3s ease;
+        backdrop-filter: blur(1px);
+    }
+
+    // Sidebar container
+    .sidebar-container {
+        position: relative;
+        z-index: 9999 !important; // EXTREMELY HIGH - Sidebar must be above everything
+        isolation: isolate; // Create independent stacking context
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        // Mobile drawer states
+        &.drawer-closed {
+            transform: translateX(-100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            z-index: 9999 !important; // EXTREMELY HIGH - Sidebar must be above everything
+        }
+
+        &.drawer-open {
+            transform: translateX(0);
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            z-index: 9999 !important; // EXTREMELY HIGH - Sidebar must be above everything
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+    }
+
+    // Main content wrapper
+    .main-wrapper {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        background-color: $background-primary;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        // Default desktop layout - assume both sidebars are visible
+        width: calc(100vw - 280px - 240px);
+        margin-left: 0;
+    }
+
+    // When right sidebar is collapsed, expand main content
+    &.right-sidebar-collapsed .main-wrapper {
+        width: calc(100vw - 280px);
+    }
+
+    // Responsive breakpoints
+    
+    // Large desktop (≥1400px) - Full sidebar visible
+    @media screen and (min-width: 1400px) {
+        .main-wrapper {
+            width: calc(100vw - 280px - 240px);
+        }
+        
+        &.right-sidebar-collapsed .main-wrapper {
+            width: calc(100vw - 280px);
+        }
+    }
+
+    // Desktop screens (>1024px) - Both sidebars visible by default
+    @media screen and (min-width: 1025px) {
+        .sidebar-container {
+            position: relative; // Back to normal flow on large screens
+            z-index: auto;
+            height: auto;
+            
+            &.drawer-open {
+                transform: translateX(0);
+                width: 280px; // Normal sidebar width
+            }
+            
+            &.drawer-closed {
+                transform: translateX(-280px); // Slide out by sidebar width
+                width: 280px;
+            }
+        }
+        
+        .main-wrapper {
+            width: calc(100vw - 280px - 240px); // Account for both sidebars
+            margin-left: 280px; // Space for left sidebar
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        // When right sidebar is collapsed
+        &.right-sidebar-collapsed .main-wrapper {
+            width: calc(100vw - 280px); // Only account for left sidebar
+        }
+        
+        // When left sidebar is closed
+        .sidebar-container.drawer-closed + .main-wrapper {
+            width: calc(100vw - 240px); // Only account for right sidebar
+            margin-left: 0;
+        }
+        
+        // When both sidebars are closed
+        &.right-sidebar-collapsed .sidebar-container.drawer-closed + .main-wrapper {
+            width: 100vw;
+            margin-left: 0;
+        }
+    }
+
+    // Medium tablets (768px-1023px) - Hidden left sidebar, compact right sidebar
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+        .main-wrapper {
+            width: calc(100vw - 220px); // Account for compact right sidebar
+        }
+        
+        &.right-sidebar-collapsed .main-wrapper {
+            width: 100vw; // No sidebars when right is collapsed
+        }
+    }
+
+    // Small tablets (480px-767px) - Hidden left sidebar, compact right sidebar
+    @media screen and (min-width: 480px) and (max-width: 767px) {
+        .main-wrapper {
+            width: calc(100vw - 200px); // Account for compact right sidebar
+        }
+        
+        &.right-sidebar-collapsed .main-wrapper {
+            width: 100vw; // No sidebars when right is collapsed
+        }
+    }
+
+
+
+    // Drawer behavior for all responsive screens
+    .sidebar-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999 !important; // EXTREMELY HIGH - Sidebar must be above everything
+        height: 100vh;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform; // Optimize for GPU acceleration
+        backface-visibility: hidden; // Prevent flickering
+        
+        &.drawer-open {
+            transform: translateX(0);
+        }
+        
+        &.drawer-closed {
+            transform: translateX(-100%);
+        }
+    }
+
+
+
+    // Mobile (<480px) specific adjustments
+    &.mobile {
+        .sidebar-container {
+            // Mobile inherits base drawer styles above
+        }
+        
+        // For very small screens (<440px), make sidebar part of layout when open
+        @media screen and (max-width: 439px) {
+            .sidebar-container {
+                position: relative;
+                z-index: 9999; // EXTREMELY HIGH - Keep highest even on very small screens
+                transform: none;
+                transition: none;
+                
+                &.drawer-open {
+                    display: block;
+                    transform: none;
+                }
+                
+                &.drawer-closed {
+                    display: none;
+                    transform: none;
+                }
+            }
+        }
+
+        .main-wrapper {
+            width: 100vw;
+            margin-left: 0;
+        }
+    }
+
+    // Very small screens (below 440px) - Sidebar expanded by default
+    @media screen and (max-width: 439px) {
+        &.mobile {
+            .sidebar-container.drawer-open + .main-wrapper {
+                width: calc(100vw - 280px);
+                margin-left: 280px;
+            }
+            
+            .sidebar-container.drawer-closed + .main-wrapper {
+                width: 100vw;
+                margin-left: 0;
+            }
+        }
+    }
+
+    // Small screens (440px-479px) - Mobile drawer behavior  
+    @media screen and (min-width: 440px) and (max-width: 479px) {
+        .main-wrapper {
+            width: 100vw; // Full width on mobile, no right sidebar
+        }
+        
+        &.mobile .main-wrapper {
+            width: 100vw;
+            margin-left: 0;
+        }
+    }
+
+    // Legacy responsive support (keeping existing breakpoints)
+    @media screen and (max-width: $width-screen-md-2) {
+        .main-wrapper {
+            width: calc(100vw - 64px - 48px);
+        }
+        
+        &.sidebar-collapsed .main-wrapper {
+            width: calc(100vw - 64px - 48px);
+        }
+    }
+
+    @media screen and (max-width: $width-screen-md-3) {
+        .main-wrapper {
+            width: calc(100vw - 64px - 48px);
+        }
+    }
+
+    @media screen and (max-width: $width-screen-md-4) {
+        .main-wrapper {
+            width: 100vw;
+        }
+    }
+
+    // Mobile specific (≤768px)
+    @media screen and (max-width: 768px) {
+        .main-wrapper {
+            width: 100vw !important;
+            margin-left: 0 !important;
+        }
+    }
+
+    // Accessibility and performance optimizations
+    
+    // Focus management
+    &:focus-within {
+        .sidebar-container {
+            outline: 2px solid var(--Primary-Brand, #007bff);
+            outline-offset: -2px;
+        }
+    }
+
+    // High contrast mode support
+    @media (prefers-contrast: high) {
+        .drawer-overlay {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .sidebar-container.drawer-open {
+            box-shadow: 0 0 0 2px currentColor;
+        }
+    }
+
+    // Reduced motion support
+    @media (prefers-reduced-motion: reduce) {
+        .drawer-overlay,
+        .sidebar-container,
+        .main-wrapper {
+            transition: none;
+        }
+    }
+
+    // Print styles
+    @media print {
+        .sidebar-container {
+            display: none;
+        }
+        
+        .main-wrapper {
+            width: 100% !important;
+            margin-left: 0 !important;
+        }
+    }
+
+    // Panel Overlay for click-outside-to-close functionality
+    .panel-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 1999;
+        backdrop-filter: blur(2px);
+        animation: fadeIn 0.2s ease-out;
+    }
+
+    // Mobile sidebar backdrop
+    .mobile-sidebar-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000; // Just below the sidebar (1001)
+        animation: fadeIn 0.3s ease-out;
+        cursor: pointer;
+        backdrop-filter: blur(2px);
+        
+        // Disable blur for medium-large screens (940px-1399px) where blur is not needed
+        @media screen and (min-width: 940px) and (max-width: 1399px) {
+            backdrop-filter: none;
+            background: rgba(0, 0, 0, 0.2); // Lighter background without blur
+        }
+        
+        // Right sidebar backdrop specific adjustments
+        &.right-sidebar-backdrop {
+            z-index: 500; // Lower than left sidebar to avoid conflicts
+            
+            // Adjust backdrop for right sidebar
+            @media screen and (max-width: 440px) {
+                // On very small screens, full coverage but lower z-index
+                background: rgba(0, 0, 0, 0.3);
+            }
+        }
+    }
+
+    // Header Icon Action Overlays
+    .notification-toast,
+    .history-panel,
+    .favorites-panel {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: var(--bg-color-secondary, #ffffff);
+        border: 1px solid var(--border-color, #e0e0e0);
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        z-index: 2000;
+        min-width: 300px;
+        max-width: 400px;
+        animation: slideInFromRight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+        
+        @media screen and (max-width: 768px) {
+            right: 10px;
+            left: 10px;
+            min-width: auto;
+            max-width: none;
+        }
+        
+        .panel-content,
+        .toast-content {
+            padding: 20px;
+            
+            .panel-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 16px;
+                padding-bottom: 8px;
+                border-bottom: 1px solid var(--border-color, #e0e0e0);
+                
+                h4 {
+                    margin: 0;
+                    color: var(--font-color-primary, #1c1c1c);
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+                
+                .close-btn {
+                    background: none;
+                    border: none;
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: var(--font-color-secondary, #666);
+                    cursor: pointer;
+                    padding: 4px 8px;
+                    border-radius: 4px;
+                    transition: all 0.2s ease;
+                    line-height: 1;
+                    
+                    &:hover {
+                        background: var(--bg-hover, rgba(0, 0, 0, 0.1));
+                        color: var(--font-color-primary, #1c1c1c);
+                        transform: scale(1.1);
+                    }
+                    
+                    &:active {
+                        transform: scale(0.95);
+                    }
+                }
+            }
+            
+            p {
+                margin: 8px 0;
+                color: var(--font-color-secondary, #666);
+                font-size: 14px;
+                line-height: 1.4;
+            }
+        }
+    }
+
+    .notification-toast {
+        background: linear-gradient(135deg, rgba(255, 71, 87, 0.95), rgba(255, 107, 138, 0.95));
+        border-color: rgba(255, 71, 87, 0.3);
+        
+        .toast-content {
+            h4, p {
+                color: white;
+            }
+            
+            h4 {
+                border-bottom-color: rgba(255, 255, 255, 0.3);
+            }
+        }
+    }
+
+    .history-panel {
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            
+            .activity-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 8px;
+                background: var(--bg-hover, rgba(0, 0, 0, 0.05));
+                border-radius: 6px;
+                transition: background-color 0.2s ease;
+                
+                &:hover {
+                    background: var(--bg-hover-dark, rgba(0, 0, 0, 0.1));
+                }
+                
+                .time {
+                    font-size: 12px;
+                    color: var(--font-color-light, #999);
+                    font-weight: 500;
+                }
+                
+                .action {
+                    font-size: 14px;
+                    color: var(--font-color-primary, #1c1c1c);
+                    flex: 1;
+                    margin-left: 12px;
+                }
+            }
+        }
+    }
+
+    .favorites-panel {
+        .favorites-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            
+            .favorite-item {
+                padding: 12px;
+                background: linear-gradient(135deg, rgba(74, 167, 133, 0.1), rgba(89, 168, 212, 0.1));
+                border: 1px solid rgba(74, 167, 133, 0.2);
+                border-radius: 8px;
+                color: var(--font-color-primary, #1c1c1c);
+                font-size: 14px;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                
+                &:hover {
+                    background: linear-gradient(135deg, rgba(74, 167, 133, 0.15), rgba(89, 168, 212, 0.15));
+                    transform: translateX(4px);
+                    border-color: rgba(74, 167, 133, 0.4);
+                }
+            }
+        }
+    }
+
+    @keyframes slideInFromRight {
+        from {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    // Dark theme adjustments
+    [data-theme="dark"] {
+        .notification-toast:not(.notification-toast) {
+            background: var(--bg-color-secondary-dark, #2d2d2d);
+            border-color: var(--border-color-dark, #444);
+        }
+        
+        .history-panel,
+        .favorites-panel {
+            background: var(--bg-color-secondary-dark, #2d2d2d);
+            border-color: var(--border-color-dark, #444);
+            
+            .activity-item {
+                background: var(--bg-hover-dark, rgba(255, 255, 255, 0.05));
+                
+                &:hover {
+                    background: var(--bg-hover-dark, rgba(255, 255, 255, 0.1));
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,502 @@
+[
+    {
+        "id": "#CM9801",
+        "name": "Natali Craig",
+        "project": "Landing Page",
+        "address": "Meadow Lane Oakland",
+        "date": "Just now",
+        "status": "In Progress",
+        "avatar": "natali-craig-avatar",
+        "alt": "Natali Craig"
+    },
+    {
+        "id": "#CM9802",
+        "name": "Kate Morrison",
+        "project": "CRM Admin pages",
+        "address": "Larry San Francisco",
+        "date": "A minute ago",
+        "status": "Complete",
+        "avatar": "kate-morrison-avatar",
+        "alt": "Kate Morrison"
+    },
+    {
+        "id": "#CM9803",
+        "name": "Drew Cano",
+        "project": "address Project",
+        "address": "Bagwell Avenue Ocala",
+        "date": "1 hour ago",
+        "status": "Pending",
+        "avatar": "drew-cano-avatar",
+        "alt": "Drew Cano"
+    },
+    {
+        "id": "#CM9804",
+        "name": "Orlando Diggs",
+        "project": "Admin Dashboard",
+        "address": "Washburn Baton Rouge",
+        "date": "Yesterday",
+        "status": "Approved",
+        "avatar": "orlando-diggs-avatar",
+        "alt": "Orlando Diggs"
+    },
+    {
+        "id": "#CM9805",
+        "name": "Andi Lane",
+        "project": "App Landing Page",
+        "address": "Nest Lane Olivette",
+        "date": "Feb 2, 2023",
+        "status": "Rejected",
+        "avatar": "andi-lane-avatar",
+        "alt": "Andi Lane"
+    },
+    {
+        "id": "#CM9806",
+        "name": "Natali Craig",
+        "project": "Landing Page",
+        "address": "Meadow Lane Oakland",
+        "date": "Just now",
+        "status": "In Progress",
+        "avatar": "natali-craig-avatar",
+        "alt": "Natali Craig"
+    },
+    {
+        "id": "#CM9807",
+        "name": "Kate Morrison",
+        "project": "CRM Admin pages",
+        "address": "Larry San Francisco",
+        "date": "A minute ago",
+        "status": "Complete",
+        "avatar": "kate-morrison-avatar",
+        "alt": "Kate Morrison"
+    },
+    {
+        "id": "#CM9808",
+        "name": "Drew Cano",
+        "project": "address Project",
+        "address": "Bagwell Avenue Ocala",
+        "date": "1 hour ago",
+        "status": "Pending",
+        "avatar": "drew-cano-avatar",
+        "alt": "Drew Cano"
+    },
+    {
+        "id": "#CM9809",
+        "name": "Orlando Diggs",
+        "project": "Admin Dashboard",
+        "address": "Washburn Baton Rouge",
+        "date": "Yesterday",
+        "status": "Approved",
+        "avatar": "orlando-diggs-avatar",
+        "alt": "Orlando Diggs"
+    },
+    {
+        "id": "#CM9810",
+        "name": "Andi Lane",
+        "project": "App Landing Page",
+        "address": "Nest Lane Olivette",
+        "date": "Feb 2, 2023",
+        "status": "Rejected",
+        "avatar": "andi-lane-avatar",
+        "alt": "Andi Lane"
+    },
+    {
+        "id": "#CM9811",
+        "name": "Alex Johnson",
+        "project": "E-commerce Platform",
+        "address": "Broadway Street New York",
+        "date": "2 hours ago",
+        "status": "In Progress",
+        "avatar": "koray-okumus-avatar",
+        "alt": "Alex Johnson"
+    },
+    {
+        "id": "#CM9812",
+        "name": "Sarah Williams",
+        "project": "Mobile App Design",
+        "address": "Sunset Boulevard Los Angeles",
+        "date": "3 hours ago",
+        "status": "Complete",
+        "avatar": "female-developer-avatar",
+        "alt": "Sarah Williams"
+    },
+    {
+        "id": "#CM9813",
+        "name": "Michael Brown",
+        "project": "Corporate Website",
+        "address": "Michigan Avenue Chicago",
+        "date": "5 hours ago",
+        "status": "Pending",
+        "avatar": "male-developer-avatar",
+        "alt": "Michael Brown"
+    },
+    {
+        "id": "#CM9814",
+        "name": "Emily Davis",
+        "project": "Portfolio Website",
+        "address": "Main Street Boston",
+        "date": "1 day ago",
+        "status": "Approved",
+        "avatar": "natali-craig-avatar",
+        "alt": "Emily Davis"
+    },
+    {
+        "id": "#CM9815",
+        "name": "James Wilson",
+        "project": "Blog Platform",
+        "address": "First Avenue Seattle",
+        "date": "1 day ago",
+        "status": "In Progress",
+        "avatar": "male-admin-avatar",
+        "alt": "James Wilson"
+    },
+    {
+        "id": "#CM9816",
+        "name": "Lisa Garcia",
+        "project": "Social Media Dashboard",
+        "address": "Ocean Drive Miami",
+        "date": "2 days ago",
+        "status": "Complete",
+        "avatar": "kate-morrison-avatar",
+        "alt": "Lisa Garcia"
+    },
+    {
+        "id": "#CM9817",
+        "name": "David Martinez",
+        "project": "Analytics Platform",
+        "address": "Peachtree Street Atlanta",
+        "date": "2 days ago",
+        "status": "Rejected",
+        "avatar": "drew-cano-avatar",
+        "alt": "David Martinez"
+    },
+    {
+        "id": "#CM9818",
+        "name": "Jennifer Taylor",
+        "project": "Learning Management System",
+        "address": "Fifth Avenue Denver",
+        "date": "3 days ago",
+        "status": "Pending",
+        "avatar": "andi-lane-avatar",
+        "alt": "Jennifer Taylor"
+    },
+    {
+        "id": "#CM9819",
+        "name": "Robert Anderson",
+        "project": "Inventory Management",
+        "address": "Market Street San Francisco",
+        "date": "3 days ago",
+        "status": "Approved",
+        "avatar": "orlando-diggs-avatar",
+        "alt": "Robert Anderson"
+    },
+    {
+        "id": "#CM9820",
+        "name": "Maria Rodriguez",
+        "project": "Customer Support Portal",
+        "address": "Elm Street Portland",
+        "date": "1 week ago",
+        "status": "Complete",
+        "avatar": "female-developer-avatar",
+        "alt": "Maria Rodriguez"
+    },
+    {
+        "id": "#CM9821",
+        "name": "Christopher Lee",
+        "project": "Payment Gateway Integration",
+        "address": "Cedar Avenue Nashville",
+        "date": "1 week ago",
+        "status": "In Progress",
+        "avatar": "male-developer-avatar",
+        "alt": "Christopher Lee"
+    },
+    {
+        "id": "#CM9822",
+        "name": "Amanda Thompson",
+        "project": "Data Visualization Tool",
+        "address": "Oak Street Phoenix",
+        "date": "1 week ago",
+        "status": "Pending",
+        "avatar": "natali-craig-avatar",
+        "alt": "Amanda Thompson"
+    },
+    {
+        "id": "#CM9823",
+        "name": "Daniel White",
+        "project": "API Documentation",
+        "address": "Pine Street Minneapolis",
+        "date": "2 weeks ago",
+        "status": "Approved",
+        "avatar": "koray-okumus-avatar",
+        "alt": "Daniel White"
+    },
+    {
+        "id": "#CM9824",
+        "name": "Jessica Harris",
+        "project": "User Authentication System",
+        "address": "Maple Avenue Detroit",
+        "date": "2 weeks ago",
+        "status": "Rejected",
+        "avatar": "kate-morrison-avatar",
+        "alt": "Jessica Harris"
+    },
+    {
+        "id": "#CM9825",
+        "name": "Matthew Clark",
+        "project": "Content Management System",
+        "address": "Walnut Street Philadelphia",
+        "date": "2 weeks ago",
+        "status": "Complete",
+        "avatar": "male-admin-avatar",
+        "alt": "Matthew Clark"
+    },
+    {
+        "id": "#CM9826",
+        "name": "Ashley Lewis",
+        "project": "Mobile Banking App",
+        "address": "Riverside Drive Houston",
+        "date": "3 weeks ago",
+        "status": "In Progress",
+        "avatar": "female-developer-avatar",
+        "alt": "Ashley Lewis"
+    },
+    {
+        "id": "#CM9827",
+        "name": "Ryan Walker",
+        "project": "Video Streaming Platform",
+        "address": "Park Avenue Dallas",
+        "date": "3 weeks ago",
+        "status": "Pending",
+        "avatar": "drew-cano-avatar",
+        "alt": "Ryan Walker"
+    },
+    {
+        "id": "#CM9828",
+        "name": "Stephanie Hall",
+        "project": "Travel Booking System",
+        "address": "Beach Road Tampa",
+        "date": "3 weeks ago",
+        "status": "Approved",
+        "avatar": "natali-craig-avatar",
+        "alt": "Stephanie Hall"
+    },
+    {
+        "id": "#CM9829",
+        "name": "Brandon Young",
+        "project": "Fitness Tracking App",
+        "address": "Mountain View San Jose",
+        "date": "1 month ago",
+        "status": "Complete",
+        "avatar": "orlando-diggs-avatar",
+        "alt": "Brandon Young"
+    },
+    {
+        "id": "#CM9830",
+        "name": "Nicole King",
+        "project": "Recipe Sharing Platform",
+        "address": "Garden Street Austin",
+        "date": "1 month ago",
+        "status": "Rejected",
+        "avatar": "kate-morrison-avatar",
+        "alt": "Nicole King"
+    },
+    {
+        "id": "#CM9831",
+        "name": "Tyler Wright",
+        "project": "Real Estate Portal",
+        "address": "Harbor Boulevard San Diego",
+        "date": "1 month ago",
+        "status": "In Progress",
+        "avatar": "male-developer-avatar",
+        "alt": "Tyler Wright"
+    },
+    {
+        "id": "#CM9832",
+        "name": "Megan Lopez",
+        "project": "Event Management System",
+        "address": "Capitol Street Sacramento",
+        "date": "1 month ago",
+        "status": "Pending",
+        "avatar": "andi-lane-avatar",
+        "alt": "Megan Lopez"
+    },
+    {
+        "id": "#CM9833",
+        "name": "Kevin Hill",
+        "project": "Job Board Platform",
+        "address": "University Avenue Berkeley",
+        "date": "1 month ago",
+        "status": "Approved",
+        "avatar": "koray-okumus-avatar",
+        "alt": "Kevin Hill"
+    },
+    {
+        "id": "#CM9834",
+        "name": "Rachel Green",
+        "project": "Online Marketplace",
+        "address": "Market Plaza Portland",
+        "date": "1 month ago",
+        "status": "Complete",
+        "avatar": "female-developer-avatar",
+        "alt": "Rachel Green"
+    },
+    {
+        "id": "#CM9835",
+        "name": "Justin Adams",
+        "project": "Cloud Storage Solution",
+        "address": "Tech District Seattle",
+        "date": "1 month ago",
+        "status": "In Progress",
+        "avatar": "male-admin-avatar",
+        "alt": "Justin Adams"
+    },
+    {
+        "id": "#CM9836",
+        "name": "Samantha Baker",
+        "project": "Music Streaming App",
+        "address": "Melody Lane Nashville",
+        "date": "2 months ago",
+        "status": "Pending",
+        "avatar": "natali-craig-avatar",
+        "alt": "Samantha Baker"
+    },
+    {
+        "id": "#CM9837",
+        "name": "Aaron Mitchell",
+        "project": "News Aggregator",
+        "address": "Press Avenue Washington",
+        "date": "2 months ago",
+        "status": "Rejected",
+        "avatar": "drew-cano-avatar",
+        "alt": "Aaron Mitchell"
+    },
+    {
+        "id": "#CM9838",
+        "name": "Victoria Nelson",
+        "project": "Language Learning Platform",
+        "address": "Education Boulevard Denver",
+        "date": "2 months ago",
+        "status": "Approved",
+        "avatar": "kate-morrison-avatar",
+        "alt": "Victoria Nelson"
+    },
+    {
+        "id": "#CM9839",
+        "name": "Nathan Carter",
+        "project": "Cryptocurrency Exchange",
+        "address": "Financial District New York",
+        "date": "2 months ago",
+        "status": "Complete",
+        "avatar": "orlando-diggs-avatar",
+        "alt": "Nathan Carter"
+    },
+    {
+        "id": "#CM9840",
+        "name": "Allison Roberts",
+        "project": "Health Monitoring System",
+        "address": "Medical Center Phoenix",
+        "date": "2 months ago",
+        "status": "In Progress",
+        "avatar": "andi-lane-avatar",
+        "alt": "Allison Roberts"
+    },
+    {
+        "id": "#CM9841",
+        "name": "Gregory Phillips",
+        "project": "Supply Chain Management",
+        "address": "Industrial Park Detroit",
+        "date": "2 months ago",
+        "status": "Pending",
+        "avatar": "male-developer-avatar",
+        "alt": "Gregory Phillips"
+    },
+    {
+        "id": "#CM9842",
+        "name": "Brittany Evans",
+        "project": "Social Network Platform",
+        "address": "Silicon Valley Palo Alto",
+        "date": "2 months ago",
+        "status": "Approved",
+        "avatar": "female-developer-avatar",
+        "alt": "Brittany Evans"
+    },
+    {
+        "id": "#CM9843",
+        "name": "Jeremy Turner",
+        "project": "Gaming Tournament Platform",
+        "address": "Entertainment District Las Vegas",
+        "date": "3 months ago",
+        "status": "Complete",
+        "avatar": "koray-okumus-avatar",
+        "alt": "Jeremy Turner"
+    },
+    {
+        "id": "#CM9844",
+        "name": "Lindsay Collins",
+        "project": "Fashion E-commerce",
+        "address": "Fashion Avenue Miami",
+        "date": "3 months ago",
+        "status": "Rejected",
+        "avatar": "natali-craig-avatar",
+        "alt": "Lindsay Collins"
+    },
+    {
+        "id": "#CM9845",
+        "name": "Marcus Edwards",
+        "project": "Food Delivery Platform",
+        "address": "Restaurant Row Chicago",
+        "date": "3 months ago",
+        "status": "In Progress",
+        "avatar": "male-admin-avatar",
+        "alt": "Marcus Edwards"
+    },
+    {
+        "id": "#CM9846",
+        "name": "Chelsea Stewart",
+        "project": "Pet Care Management",
+        "address": "Animal Street Boston",
+        "date": "3 months ago",
+        "status": "Pending",
+        "avatar": "kate-morrison-avatar",
+        "alt": "Chelsea Stewart"
+    },
+    {
+        "id": "#CM9847",
+        "name": "Caleb Sanchez",
+        "project": "Fleet Management System",
+        "address": "Transport Hub Atlanta",
+        "date": "3 months ago",
+        "status": "Approved",
+        "avatar": "drew-cano-avatar",
+        "alt": "Caleb Sanchez"
+    },
+    {
+        "id": "#CM9848",
+        "name": "Monica Morris",
+        "project": "Document Management Portal",
+        "address": "Office Complex Minneapolis",
+        "date": "3 months ago",
+        "status": "Complete",
+        "avatar": "andi-lane-avatar",
+        "alt": "Monica Morris"
+    },
+    {
+        "id": "#CM9849",
+        "name": "Blake Rogers",
+        "project": "Weather Monitoring System",
+        "address": "Climate Center Kansas City",
+        "date": "3 months ago",
+        "status": "In Progress",
+        "avatar": "orlando-diggs-avatar",
+        "alt": "Blake Rogers"
+    },
+    {
+        "id": "#CM9850",
+        "name": "Tiffany Reed",
+        "project": "Appointment Scheduling App",
+        "address": "Healthcare Plaza Cleveland",
+        "date": "3 months ago",
+        "status": "Pending",
+        "avatar": "female-developer-avatar",
+        "alt": "Tiffany Reed"
+    }
+]

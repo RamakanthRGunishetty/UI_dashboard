@@ -1,0 +1,95 @@
+.MuiPaper-root.MuiMenu-paper {
+    background-color: var(--bg-color-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+    outline: none !important;
+    
+    .MuiMenuItem-root {
+        color: var(--font-color-primary) !important;
+        background-color: var(--bg-color-secondary) !important;
+        font-size: 14px !important;
+        outline: none !important;
+        
+        &:hover {
+            background-color: var(--bg-hover) !important;
+        }
+        
+        &:focus {
+            background-color: var(--bg-color-secondary) !important;
+            outline: none !important;
+        }
+        
+        &.Mui-selected {
+            background-color: var(--bg-color-secondary) !important;
+            color: var(--font-color-primary) !important;
+            
+            &:hover {
+                background-color: var(--bg-hover) !important;
+            }
+            
+            &:focus {
+                background-color: var(--bg-color-secondary) !important;
+                outline: none !important;
+            }
+        }
+        
+        &.Mui-focusVisible {
+            background-color: var(--bg-color-secondary) !important;
+            outline: none !important;
+        }
+        
+        &:active {
+            background-color: var(--bg-color-secondary) !important;
+            outline: none !important;
+        }
+    }
+}
+
+// Table pagination specific styling
+.MuiTablePagination-root {
+    // Hide scrollbars on very small screens
+    @media screen and (max-width: 439px) {
+        overflow-x: hidden;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        
+        &::-webkit-scrollbar {
+            display: none; /* WebKit */
+        }
+    }
+    
+    .MuiSelect-select {
+        color: var(--font-color-primary) !important;
+        background-color: var(--bg-color-secondary) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 4px !important;
+        outline: none !important;
+        
+        &:focus {
+            border-color: var(--border-color) !important;
+            background-color: var(--bg-color-secondary) !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+        
+        &:hover {
+            background-color: var(--bg-hover) !important;
+        }
+        
+        &:active {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+    }
+    
+    .MuiSelect-icon {
+        color: var(--font-color-primary) !important;
+    }
+}
+
+// Dark theme specific adjustments
+[data-theme="dark"] {
+    .MuiPaper-root.MuiMenu-paper {
+        box-shadow: 0 4px 20px rgba(255, 255, 255, 0.05) !important;
+    }
+}

@@ -1,0 +1,173 @@
+.search{
+    display: flex;
+    width: 160px;
+    padding: $padding-1;
+    background-color: $bg-search;
+    border-radius: 8px;
+    align-items: center;
+    gap: clamp(4px, 1vw, 8px);
+    transition: all 0.3s ease;
+    position: relative;
+    
+    // Icon styling
+    .svg-icon {
+        flex-shrink: 0;
+        width: clamp(16px, 3vw, 20px);
+        height: clamp(16px, 3vw, 20px);
+        color: var(--font-color-light, $font-search);
+        transition: all 0.2s ease;
+    }
+    
+    input{
+        width: 100%;
+        outline: none;
+        border: none;
+        background: transparent;
+        font-size: clamp(0.75rem, 2vw, 0.875rem);
+        color: var(--font-color-primary);
+        min-width: 0;
+        
+        &:focus {
+            outline: none;
+        }
+    }
+    
+    input::placeholder{
+        color: $font-search;
+        font-size: inherit;
+    }
+    
+    // Very small screens (<440px) responsive design
+    &.very-small {
+        width: 100%;
+        min-width: 100px;
+        max-width: 200px;
+        padding: 6px 8px;
+        border-radius: 6px;
+        gap: 6px;
+        
+        .svg-icon {
+            width: 16px;
+            height: 16px;
+        }
+        
+        input {
+            font-size: 0.75rem;
+            padding: 0;
+            
+            &::placeholder {
+                font-size: 0.75rem;
+            }
+        }
+        
+        // When focused, expand slightly
+        &.focused {
+            box-shadow: 0 0 0 2px var(--Primary-Brand, #007bff);
+            background-color: var(--bg-color-primary);
+            
+            .svg-icon {
+                color: var(--Primary-Brand, #007bff);
+            }
+        }
+        
+        // Hide text icon on very small screens to save space
+        .svg-icon:last-child {
+            display: none;
+        }
+    }
+    
+    // Compact mode for when sidebar is expanded on very small screens
+    &.compact {
+        width: 90px;
+        min-width: 80px;
+        padding: 4px 6px;
+        gap: 4px;
+        
+        .svg-icon {
+            width: 14px;
+            height: 14px;
+        }
+        
+        input {
+            font-size: 0.7rem;
+            
+            &::placeholder {
+                font-size: 0.7rem;
+            }
+        }
+    }
+    
+    // Enhanced touch targets for mobile
+    @media (hover: none) and (pointer: coarse) {
+        min-height: 44px;
+        
+        &.very-small {
+            min-height: 40px;
+            padding: 8px 10px;
+            
+            &.compact {
+                min-height: 36px;
+                padding: 6px 8px;
+            }
+        }
+    }
+    
+    // Hover states for desktop
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            background-color: var(--bg-hover);
+            
+            .svg-icon {
+                color: var(--font-color-primary);
+            }
+        }
+    }
+    
+    // Focus state
+    &:focus-within {
+        outline: 2px solid var(--Primary-Brand, #007bff);
+        outline-offset: 1px;
+        
+        .svg-icon {
+            color: var(--Primary-Brand, #007bff);
+        }
+    }
+    
+    // High contrast mode support
+    @media (prefers-contrast: high) {
+        border: 1px solid var(--border-color);
+        
+        &:focus-within {
+            border-color: var(--Primary-Brand, #007bff);
+            outline-width: 3px;
+        }
+    }
+    
+    // Reduced motion support
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+        
+        .svg-icon {
+            transition: none;
+        }
+    }
+
+    // Expanded mode when right sidebar is collapsed (480px-939px)
+    &.expanded {
+        @media screen and (min-width: 480px) and (max-width: 939px) {
+            min-width: clamp(200px, 25vw, 300px);
+            max-width: 350px;
+            
+            input {
+                min-width: clamp(150px, 20vw, 250px);
+                font-size: clamp(0.875rem, 1.5vw, 0.95rem);
+                padding-left: clamp(8px, 1vw, 12px);
+            }
+            
+            .svg-icon {
+                width: clamp(16px, 2vw, 18px);
+                height: clamp(16px, 2vw, 18px);
+            }
+        }
+    }
+}
