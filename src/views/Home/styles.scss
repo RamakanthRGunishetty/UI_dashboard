@@ -5,7 +5,7 @@
     position: relative;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    // Mobile drawer overlay
+    // Left sidebar drawer overlay - covers entire screen when sidebar is open
     .drawer-overlay {
         position: fixed;
         top: 0;
@@ -18,11 +18,17 @@
         backdrop-filter: blur(2px);
         will-change: opacity; // GPU acceleration for overlay
         contain: layout style paint; // Optimization hint
+        cursor: pointer;
         
-        // Disable blur for medium-large screens (940px-1399px) where blur is not needed
-        @media screen and (min-width: 940px) and (max-width: 1399px) {
+        // Responsive background opacity for different screen sizes
+        @media screen and (min-width: 941px) and (max-width: 1399px) {
+            background: rgba(0, 0, 0, 0.3); // Lighter background for medium screens
+            backdrop-filter: blur(1px);
+        }
+        
+        @media screen and (min-width: 1400px) {
+            background: rgba(0, 0, 0, 0.2); // Very light background for large screens
             backdrop-filter: none;
-            background: rgba(0, 0, 0, 0.2); // Lighter background without blur
         }
     }
     

@@ -215,9 +215,9 @@ const Home = () => {
 
   const currentPageTitle = isDashboard ? "eCommerce" : "Orders";
   
-  // Overlay conditions - clean UI matching Figma design
-  const shouldShowDrawerOverlay = (viewport.width > 440 && viewport.width <= 940) && isDrawerOpen; // Only for smaller screens that need focus
-  const shouldShowRightSidebarBackdrop = (viewport.width > 440 && viewport.width <= 940) && isRightSidebarOpen; // Same logic as left sidebar
+  // Overlay conditions - left sidebar closes when clicking anywhere
+  const shouldShowDrawerOverlay = isDrawerOpen; // Show overlay for all screen sizes when left sidebar is open
+  const shouldShowRightSidebarBackdrop = (viewport.width > 440 && viewport.width <= 940) && isRightSidebarOpen; // Same logic as right sidebar
   
   return (
     <main 
@@ -226,19 +226,10 @@ const Home = () => {
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-      {/* Drawer Overlay - EXCLUDE 941px-1399px range (no blur/overlay needed) */}
+      {/* Drawer Overlay - Covers entire screen when left sidebar is open */}
       {shouldShowDrawerOverlay && (
         <div
           className="drawer-overlay"
-          onClick={closeDrawer}
-          aria-hidden="true"
-        />
-      )}
-      
-      {/* Very Small Screen Close Overlay - for ≤440px when left sidebar is open */}
-      {viewport.width <= 440 && isDrawerOpen && (
-        <div
-          className="very-small-overlay left-sidebar-overlay"
           onClick={closeDrawer}
           aria-hidden="true"
         />
