@@ -426,7 +426,8 @@
     .favorites-panel {
         position: fixed;
         top: 80px;
-        right: 20px;
+        left: 50%;
+        transform: translateX(-50%);
         background: var(--bg-color-secondary, #ffffff);
         border: 1px solid var(--border-color, #e0e0e0);
         border-radius: 12px;
@@ -434,14 +435,15 @@
         z-index: 2000;
         min-width: 300px;
         max-width: 400px;
-        animation: slideInFromRight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        animation: slideInFromTopCenter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         backdrop-filter: blur(10px);
         
         @media screen and (max-width: 768px) {
-            right: 10px;
-            left: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100vw - 20px);
             min-width: auto;
-            max-width: none;
+            max-width: 400px;
         }
         
         .panel-content,
@@ -588,6 +590,17 @@
             opacity: 0;
         }
         to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideInFromTopCenter {
+        from {
+            transform: translateX(-50%) translateY(-20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(-50%) translateY(0);
             opacity: 1;
         }
     }
