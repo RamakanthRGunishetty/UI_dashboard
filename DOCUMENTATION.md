@@ -1,4 +1,4 @@
-# Snow Dashboard Documentation
+# Analytucs UI Dashboard Documentation
 
 ## Table of Contents
 
