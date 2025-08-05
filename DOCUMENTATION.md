@@ -15,7 +15,7 @@
 
 ### Design Patterns
 
-The Snow Dashboard follows a modular architecture pattern with clear separation of concerns:
+The Analytics UI Dashboard follows a modular architecture pattern with clear separation of concerns:
 
 - **Components**: Pure, reusable UI components
 - **Containers**: Business logic and data handling
