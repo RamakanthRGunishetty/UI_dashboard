@@ -92,19 +92,16 @@
         }
     }
 
-    // Custom scrollbar
+    // Hide scrollbar completely while keeping scroll functionality
     &::-webkit-scrollbar {
-        width: 4px;
+        display: none;
     }
-
-    &::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: var(--border-color, $border-color);
-        border-radius: 2px;
-    }
+    
+    // For Firefox
+    scrollbar-width: none;
+    
+    // For IE and Edge
+    -ms-overflow-style: none;
 
     // Icon-only mode for screens <940px
     &.icon-only {
@@ -324,6 +321,17 @@
             gap: 16px;
             height: 100%;
             overflow-y: auto;
+            
+            // Hide scrollbar completely while keeping scroll functionality
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            
+            // For Firefox
+            scrollbar-width: none;
+            
+            // For IE and Edge
+            -ms-overflow-style: none;
         }
     }
 
@@ -334,6 +342,18 @@
         height: 100%;
         gap: 16px;
         padding-top: 0;
+        overflow-y: auto;
+        
+        // Hide scrollbar completely while keeping scroll functionality
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        
+        // For Firefox
+        scrollbar-width: none;
+        
+        // For IE and Edge
+        -ms-overflow-style: none;
         
         // Responsive adjustments for content
         @media screen and (max-width: 1200px) {
